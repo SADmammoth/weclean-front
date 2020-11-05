@@ -24,6 +24,9 @@ export const query = graphql`
         manufacturer
         model
         price
+        imagesList {
+          thumb
+        }
       }
     }
   }

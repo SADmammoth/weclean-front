@@ -8,7 +8,7 @@ module.exports = {
       resolve: `gatsby-source-graphql`,
       options: {
         fieldName: `graphqlData`,
-        url: process.env.GATSBY_API_URL,
+        url: `${process.env.GATSBY_API_URL}/graphql`,
         typeName: `VacuumCleaner`,
         refetchInterval: 60,
         batch: true,
