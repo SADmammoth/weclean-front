@@ -1,13 +1,19 @@
 import { graphql } from "gatsby"
 import React from "react"
+import VacuumCleanerCard from "../components/VacuumCleanerCard"
 
 export default function Home({
   data: {
     graphqlData: { allVacuumCleaners },
   },
 }) {
-  console.log(allVacuumCleaners)
-  return <div>Hello world!</div>
+  return (
+    <nu-flow>
+      {allVacuumCleaners.map(props => (
+        <VacuumCleanerCard key={props.id} {...props} />
+      ))}
+    </nu-flow>
+  )
 }
 
 export const query = graphql`
@@ -15,19 +21,9 @@ export const query = graphql`
     graphqlData {
       allVacuumCleaners {
         id
-        cleaningFeatures
-        color
-        construction
-        dustCollectorType
         manufacturer
         model
-        noiseLevel
-        powerConsumption
-        powerCordLength
-        powerSource
         price
-        volumeOfDustCollector
-        weight
       }
     }
   }
