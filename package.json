@@ -15,10 +15,12 @@
   },
   "dependencies": {
     "gatsby": "^2.24.79",
+    "gatsby-plugin-react-helmet": "^3.3.14",
     "gatsby-source-graphql": "^2.7.7",
     "jsx-native-events": "^2.0.0",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "react-helmet": "^6.1.0"
   },
   "devDependencies": {
     "gatsby-plugin-numl": "0.0.2",

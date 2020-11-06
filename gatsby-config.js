@@ -14,6 +14,6 @@ module.exports = {
         batch: true,
       },
     },
-    `gatsby-plugin-numl`,
+    `gatsby-plugin-numl`,`gatsby-plugin-react-helmet`
   ],
 }
