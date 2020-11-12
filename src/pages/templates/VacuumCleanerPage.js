@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Helmet } from "react-helmet"
+import Header from "../../components/Header"
 
 export default function VacuumCleanerCard({
   pageContext: {
@@ -17,9 +18,12 @@ export default function VacuumCleanerCard({
     setImage(process.env.GATSBY_API_URL + image600x600)
   }, [image600x600])
 
+  const title = `WeClean \u2013 ${manufacturer} ${model}`
+
   return (
     <>
-      <Helmet title={`WeClean \u2013 ${manufacturer} ${model}`} />
+      <Helmet title={title} />
+      <Header title="WeClean" />
       <nu-flow>
         <nu-block>
           <nu-img src={image} />

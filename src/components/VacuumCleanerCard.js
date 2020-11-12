@@ -6,6 +6,12 @@ export default function VacuumCleanerCard({
   model,
   price,
   imagesList: { thumb },
+  construction,
+  weight,
+  cleaningFeatures,
+  powerSource,
+  dustCollectorType,
+  oldPrice,
 }) {
   const [image, setImage] = useState("#")
 
@@ -14,11 +20,72 @@ export default function VacuumCleanerCard({
   }, [thumb])
 
   return (
-    <nu-card>
-      <nu-img src={image} />
-      <nu-h3>{model}</nu-h3>
-      <nu-h4>{manufacturer}</nu-h4>
-      <nu-badge>${price}</nu-badge>
+    <nu-card theme="blue" width="60%">
+      <nu-pane gap="0" items="flex-start">
+        <nu-region>
+          <nu-img src={image} height="20x" width="20x" border />
+        </nu-region>
+        <nu-region grow="1" padding="0.5x">
+          <nu-strong padding="0 4x" color="special">
+            {manufacturer}
+          </nu-strong>
+          <nu-mark width="100%" radius="0" padding="1x 3x 1x 4x">
+            <nu-h4 color="text-strong">{model}</nu-h4>
+          </nu-mark>
+          <nu-description move="2x 2x" width="90%" height="7x">
+            <nu-grid
+              rows="auto auto"
+              columns="auto auto auto"
+              items="left"
+              content="space-between left"
+              flow="column"
+              gap="1x 3x"
+            >
+              <nu-badge
+                special
+                z="2"
+                size="3x"
+                padding="1x 2x"
+                text="italic"
+                position="absolute"
+                weight="regular"
+                row="span 2"
+              >
+                {oldPrice === price || (
+                  <nu-badge
+                    bg="transparent"
+                    size="2x"
+                    padding="0x 1.5x"
+                    text="italic del"
+                    weight="regular"
+                    place="absolute"
+                    move="0 -140%"
+                  >
+                    ${oldPrice.toFixed(2)}
+                  </nu-badge>
+                )}
+                ${price.toFixed(2)}
+              </nu-badge>
+              <nu-block class="nowrap">
+                <nu-strong>Construction type: </nu-strong>
+                {construction}
+              </nu-block>
+              <nu-block class="nowrap">
+                <nu-strong>Weight: </nu-strong>
+                {weight} lbs
+              </nu-block>
+              <nu-block class="nowrap">
+                <nu-strong>Cleaning features: </nu-strong>
+                {cleaningFeatures}
+              </nu-block>
+              <nu-block class="nowrap">
+                <nu-strong>Power source: </nu-strong>
+                {powerSource}
+              </nu-block>
+            </nu-grid>
+          </nu-description>
+        </nu-region>
+      </nu-pane>
     </nu-card>
   )
 }

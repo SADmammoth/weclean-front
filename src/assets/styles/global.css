@@ -1,0 +1,17 @@
+*:not(:defined) {
+  visibility: hidden;
+}
+
+@font-face {
+  font-family: "Pump-Light";
+  src: url("../fonts/PumpLight.ttf");
+  font-weight: 400;
+}
+
+.nowrap {
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
