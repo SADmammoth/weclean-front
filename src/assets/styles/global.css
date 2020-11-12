@@ -8,6 +8,18 @@
   font-weight: 400;
 }
 
+@font-face {
+  font-family: "Work Sans";
+  src: url("../fonts/WorkSans-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Work Sans";
+  src: url("../fonts/WorkSans-SemiBold.ttf");
+  font-weight: 600;
+}
+
 .nowrap {
   display: -webkit-box !important;
   -webkit-box-orient: vertical;

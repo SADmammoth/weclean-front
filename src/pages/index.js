@@ -1,4 +1,6 @@
 import { graphql } from "gatsby"
+
+import Theme from "./templates/Theme"
 import React from "react"
 import { Helmet } from "react-helmet"
 import Header from "../components/Header"
@@ -12,16 +14,15 @@ export default function Home({
   const title = "WeClean \u2013 Home"
 
   return (
-    <>
+    <Theme>
       <Helmet title={title} />
       <Header title="WeClean" />
       <nu-flex items="center" flow="column" gap="1x" padding="1x">
-        <nu-theme name="blue" hue="250" saturation="auto" mod="tint"></nu-theme>
         {allVacuumCleaners.map(props => (
           <VacuumCleanerCard key={props.id} {...props} />
         ))}
       </nu-flex>
-    </>
+    </Theme>
   )
 }
 

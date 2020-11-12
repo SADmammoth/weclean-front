@@ -20,32 +20,32 @@ export default function VacuumCleanerCard({
   }, [thumb])
 
   return (
-    <nu-card theme="blue" width="60%">
+    <nu-card theme="blue" width="60%" height="23x">
       <nu-pane gap="0" items="flex-start">
-        <nu-region>
-          <nu-img src={image} height="20x" width="20x" border />
+        <nu-region move="-2x -2x" padding="2x 1x 2x 2x" fill="mark">
+          <nu-img src={image} height="18x" width="18x" border />
         </nu-region>
-        <nu-region grow="1" padding="0.5x">
-          <nu-strong padding="0 4x" color="special">
+        <nu-region grow="1">
+          <nu-strong padding="0 2x" color="special">
             {manufacturer}
           </nu-strong>
-          <nu-mark width="100%" radius="0" padding="1x 3x 1x 4x">
+          <nu-mark width="100%" radius="0" padding="0x 3x 0x 2x">
             <nu-h4 color="text-strong">{model}</nu-h4>
           </nu-mark>
-          <nu-description move="2x 2x" width="90%" height="7x">
+          <nu-description move="2x 2x" width="90%" height="6x">
             <nu-grid
               rows="auto auto"
               columns="auto auto auto"
               items="left"
               content="space-between left"
               flow="column"
-              gap="1x 3x"
+              gap="0.5x 3x"
             >
               <nu-badge
                 special
                 z="2"
                 size="3x"
-                padding="1x 2x"
+                padding="1x 1x"
                 text="italic"
                 position="absolute"
                 weight="regular"
