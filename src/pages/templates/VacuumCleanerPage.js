@@ -21,7 +21,7 @@ export default function VacuumCleanerCard({
   const title = `WeClean \u2013 ${manufacturer} ${model}`
 
   return (
-    <>
+    <Theme>
       <Helmet title={title} />
       <Header title="WeClean" />
       <nu-flow>
@@ -32,6 +32,6 @@ export default function VacuumCleanerCard({
         <nu-h4>{manufacturer}</nu-h4>
         <nu-badge>${price}</nu-badge>
       </nu-flow>
-    </>
+    </Theme>
   )
 }
