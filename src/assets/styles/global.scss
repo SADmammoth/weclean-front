@@ -28,7 +28,17 @@
   overflow: hidden;
 }
 
+.word-break {
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.container {
+  width: 95vw;
+  max-width: 800px;
 }

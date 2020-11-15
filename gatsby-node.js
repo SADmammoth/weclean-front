@@ -11,6 +11,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             id
             model
             manufacturer
+            oldPrice
             price
             construction
             cleaningFeatures
@@ -27,6 +28,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               image600x600
             }
           }
+          units
         }
       }
     `
@@ -41,11 +43,17 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     `src/pages/templates/VacuumCleanerPage.js`
   )
 
-  query.data.graphqlData.allVacuumCleaners.forEach(node => {
+  const {
+    data: {
+      graphqlData: { allVacuumCleaners, units },
+    },
+  } = query
+
+  allVacuumCleaners.forEach(node => {
     createPage({
       path: `/vc/${node.id}`,
       component: vacuumCleanerTemplate,
-      context: node,
+      context: { ...node, units },
     })
   })
 }

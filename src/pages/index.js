@@ -9,6 +9,7 @@ import VacuumCleanerCard from "../components/VacuumCleanerCard"
 export default function Home({
   data: {
     graphqlData: { allVacuumCleaners },
+    units,
   },
 }) {
   const title = "WeClean \u2013 Home"
@@ -17,9 +18,10 @@ export default function Home({
     <Theme>
       <Helmet title={title} />
       <Header title="WeClean" />
+      <nu-h1>Catalog</nu-h1>
       <nu-flex items="center" flow="column" gap="1x" padding="1x">
         {allVacuumCleaners.map(props => (
-          <VacuumCleanerCard key={props.id} {...props} />
+          <VacuumCleanerCard key={props.id} {...props} units={units} />
         ))}
       </nu-flex>
     </Theme>
@@ -48,6 +50,7 @@ export const query = graphql`
         color
         oldPrice
       }
+      units
     }
   }
 `
