@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet"
 import _ from "lodash"
 import Header from "../../components/Header"
 import Theme from "./Theme"
+import Footer from "../../components/Footer"
 
 export default function VacuumCleanerCard({
   pageContext: {
@@ -47,7 +48,7 @@ export default function VacuumCleanerCard({
     <Theme>
       <Helmet title={title} />
       <Header title="WeClean" />
-      <nu-flex flow="column" items="center" padding="2x 0">
+      <nu-flex flow="column" items="center" padding="2x 0 4x 0">
         <nu-grid class="container" rows="auto auto auto" columns="40% 60%">
           <nu-img border src={image} row="1 span 3" />
           <nu-section>
@@ -106,6 +107,7 @@ export default function VacuumCleanerCard({
           </nu-section>
         </nu-grid>
       </nu-flex>
+      <Footer />
     </Theme>
   )
 }

@@ -1,5 +1,7 @@
 import { graphql } from "gatsby"
 
+import Footer from "../components/Footer"
+
 import Theme from "./templates/Theme"
 import React from "react"
 import { Helmet } from "react-helmet"
@@ -8,8 +10,7 @@ import VacuumCleanerCard from "../components/VacuumCleanerCard"
 
 export default function Home({
   data: {
-    graphqlData: { allVacuumCleaners },
-    units,
+    graphqlData: { allVacuumCleaners, units },
   },
 }) {
   const title = "WeClean \u2013 Home"
@@ -18,12 +19,14 @@ export default function Home({
     <Theme>
       <Helmet title={title} />
       <Header title="WeClean" />
-      <nu-h1>Catalog</nu-h1>
-      <nu-flex items="center" flow="column" gap="1x" padding="1x">
+      <nu-flex items="center" flow="column" gap="1x" padding="1x 0 4x 0">
+        <nu-h1>Catalog</nu-h1>
         {allVacuumCleaners.map(props => (
           <VacuumCleanerCard key={props.id} {...props} units={units} />
         ))}
       </nu-flex>
+
+      <Footer />
     </Theme>
   )
 }
