@@ -26,6 +26,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             imagesList {
               thumb
               image600x600
+              others
             }
           }
           units

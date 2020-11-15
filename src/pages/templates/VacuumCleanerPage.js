@@ -4,6 +4,7 @@ import _ from "lodash"
 import Header from "../../components/Header"
 import Theme from "./Theme"
 import Footer from "../../components/Footer"
+import Gallery from "../../components/Gallery"
 
 export default function VacuumCleanerCard({
   pageContext: {
@@ -11,7 +12,7 @@ export default function VacuumCleanerCard({
     manufacturer,
     model,
     price,
-    imagesList: { image600x600 },
+    imagesList: { image600x600, others },
     oldPrice,
     units,
     ...otherProps
@@ -34,13 +35,14 @@ export default function VacuumCleanerCard({
     }
 
     return (
-      <nu-row key={propName}>
-        <nu-rowheader>
+      <nu-flex key={propName} content="space-between" gap="1x">
+        <nu-strong>
           {capitalizedName}
           {unit}:
-        </nu-rowheader>
-        <nu-cell>{propValue}</nu-cell>
-      </nu-row>
+        </nu-strong>
+        <nu-el border="1bw bottom dashed" space="-.5x 0" grow="1"></nu-el>
+        <nu-block>{propValue}</nu-block>
+      </nu-flex>
     )
   }
 
@@ -48,10 +50,21 @@ export default function VacuumCleanerCard({
     <Theme>
       <Helmet title={title} />
       <Header title="WeClean" />
-      <nu-flex flow="column" items="center" padding="2x 0 4x 0">
-        <nu-grid class="container" rows="auto auto auto" columns="40% 60%">
-          <nu-img border src={image} row="1 span 3" />
-          <nu-section>
+
+      <nu-flex flow="column" items="center" padding="2x 0 10x 0">
+        <nu-grid
+          class="container"
+          items="center"
+          rows="auto auto auto"
+          columns="40% 60%"
+          gap="0x 2x"
+        >
+          <Gallery
+            images={[image600x600, ...others]}
+            mode="images"
+            row="1 span 3"
+          />
+          <nu-flex flow="column" place="center start" width="100%">
             <nu-strong size="h3" padding="0 2x" color="special">
               {manufacturer}
             </nu-strong>
@@ -66,6 +79,7 @@ export default function VacuumCleanerCard({
               </nu-h1>
             </nu-mark>
             <nu-badge
+              place="start"
               special
               z="2"
               size="4x"
@@ -97,14 +111,20 @@ export default function VacuumCleanerCard({
 
               {units["price"]}
             </nu-badge>
-          </nu-section>
-
-          <nu-section column="2" padding="2x">
-            <nu-h2 padding="1x">Specifications:</nu-h2>
-            <nu-table border="0" width="100%">
+          </nu-flex>
+          <nu-flex
+            flow="column"
+            items="center"
+            column="span 2"
+            width="100%"
+            padding="6x top"
+          >
+            <nu-line />
+            <nu-h2 padding="2x bottom">Specifications:</nu-h2>
+            <nu-grid border="0" columns="auto auto" flow="row wrap" gap="1x 5x">
               {Object.entries(otherProps).map(entry => getSpec(...entry))}
-            </nu-table>
-          </nu-section>
+            </nu-grid>
+          </nu-flex>
         </nu-grid>
       </nu-flex>
       <Footer />
