@@ -1,9 +1,12 @@
+/** @jsx nativeEvents */
+import nativeEvents from "jsx-native-events"
+
 import React, { useState, useEffect } from "react"
 import { ReactComponent as Logo } from "../assets/images/logo_vector.svg"
 import { Link } from "gatsby"
 import Theme from "../pages/templates/Theme"
 
-export default function Header({ title }) {
+export default function Header({ title, onSearchInput }) {
   return (
     <nu-header padding="2x 6x 2x 2x">
       <nu-flex content="center">
@@ -25,7 +28,11 @@ export default function Header({ title }) {
           </Link>
           <nu-inputgroup toned width="30%" fill="subtle">
             <nu-icon name="search" />
-            <nu-input width="100%" placeholder="Search" />
+            <nu-input
+              width="100%"
+              placeholder="Search"
+              onEventInput={event => onSearchInput(event.target.value)}
+            />
           </nu-inputgroup>
         </nu-pane>
       </nu-flex>

@@ -41,7 +41,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   const vacuumCleanerTemplate = path.resolve(
-    `src/pages/templates/VacuumCleanerPage.js`
+    `src/pages/templates/VacuumCleanerPage.jsx`
   )
 
   const {
