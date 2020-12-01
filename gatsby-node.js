@@ -13,12 +13,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             manufacturer
             oldPrice
             price
-            construction
-            cleaningFeatures
-            dustCollectorType
+            construction: constructionName
+            cleaningFeatures: cleaningFeaturesNames
+            dustCollectorType: dustCollectorTypeName
             volumeOfDustCollector
             powerConsumption
-            powerSource
+            powerSource: powerSourceName
             color
             powerCordLength
             weight

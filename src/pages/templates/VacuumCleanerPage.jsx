@@ -31,17 +31,21 @@ export default function VacuumCleanerCard({
     let capitalizedName = _.capitalize(_.startCase(propName))
     let unit = ""
     if (typeof propValue === "number") {
-      unit = ` (${units[propName]})`
+      unit = units[propName]
+    }
+
+    if (propValue instanceof Array) {
+      propValue = propValue.join(", ")
     }
 
     return (
       <nu-flex key={propName} content="space-between" gap="1x">
-        <nu-strong>
-          {capitalizedName}
-          {unit}:
-        </nu-strong>
+        <nu-strong>{capitalizedName}</nu-strong>
         <nu-el border="1bw bottom dashed" space="-.5x 0" grow="1"></nu-el>
-        <nu-block>{propValue}</nu-block>
+        <nu-block>
+          {propValue}
+          {unit}
+        </nu-block>
       </nu-flex>
     )
   }
@@ -57,14 +61,13 @@ export default function VacuumCleanerCard({
           items="center"
           rows="auto auto auto"
           columns="40% 60%"
-          gap="0x 2x"
         >
           <Gallery
             images={[image600x600, ...others]}
             mode="images"
-            row="1 span 3"
+            place="center end"
           />
-          <nu-flex flow="column" place="center start" width="100%">
+          <nu-flex flow="column" place="center start">
             <nu-strong size="h3" padding="0 2x" color="special">
               {manufacturer}
             </nu-strong>

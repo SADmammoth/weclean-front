@@ -1,9 +1,16 @@
 export default {
   equal: "EQ",
+  notEqual: "NOT_EQ",
   equalCaseInsensitive: "EQ_CI",
+  notEqualCaseInsensitive: "NOT_EQ_CI",
+  anyOf: "ANY_OF",
   contains: "LIKE",
   containsCaseInsensitive: "LIKE_CI",
   less: "LT",
+  lessOrEqual: "LT_EQ",
   greater: "GT",
+  lessOrEqual: "GT_EQ",
   range: "FROM_TO",
+  notInRange: "BEFORE_AFTER",
+  inArray: "IN",
 }

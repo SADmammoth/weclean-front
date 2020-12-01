@@ -11,7 +11,6 @@ export default function VacuumCleanerCard({
   weight,
   cleaningFeatures,
   powerSource,
-  dustCollectorType,
   oldPrice,
   units,
 }) {
@@ -22,7 +21,7 @@ export default function VacuumCleanerCard({
   }, [thumb])
 
   return (
-    <nu-card theme="blue" height="23x" class="container">
+    <nu-card theme="blue" height="23x">
       <nu-pane gap="0" items="flex-start">
         <nu-region move="-2x -2x" padding="2x 1x 2x 2x" fill="mark">
           <EntityPageLink id={id}>
@@ -51,7 +50,7 @@ export default function VacuumCleanerCard({
               items="left"
               content="space-between left"
               flow="column"
-              gap="0 1x"
+              gap="0 1.5x"
             >
               <nu-badge
                 special
@@ -87,20 +86,12 @@ export default function VacuumCleanerCard({
                 </EntityPageLink>
               </nu-badge>
               <nu-block class="nowrap">
-                <nu-strong>Const. type: </nu-strong>
+                <nu-strong>Construction type: </nu-strong>
                 {construction}
               </nu-block>
               <nu-block class="nowrap">
-                <nu-strong>Weight: </nu-strong>
-                {weight} lbs
-              </nu-block>
-              <nu-block class="nowrap">
                 <nu-strong>Cleaning features: </nu-strong>
-                {cleaningFeatures}
-              </nu-block>
-              <nu-block class="nowrap">
-                <nu-strong>Power source: </nu-strong>
-                {powerSource}
+                {cleaningFeatures.join(", ")}
               </nu-block>
             </nu-grid>
           </nu-description>

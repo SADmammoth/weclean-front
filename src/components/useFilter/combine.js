@@ -2,7 +2,6 @@ import _ from "lodash"
 import combinators from "./combinators"
 
 export default function combine(array1, array2, combinator) {
-  console.log(array1, array2)
   switch (combinator) {
     case combinators.and:
       return _.intersection(array1, array2)

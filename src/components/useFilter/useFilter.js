@@ -25,8 +25,7 @@ export default function useFilter(items) {
     let combinator = combinators
     let initList = list
 
-    Object.entries(conditions).forEach(([key, filterValue], index) => {
-      console.log(filterValue)
+    const applyConditions = combinator => ([key, filterValue], index) => {
       if (!filterValue.value && !filterValue.range) {
         list = items
         return
@@ -36,17 +35,20 @@ export default function useFilter(items) {
       }
 
       if (index) {
+        console.log(key, initList)
         list = combine(
           list,
           initList.filter(item => filterFn(filterValue, item[key])),
           combinator
         )
       } else {
+        console.log(key, initList)
         list = initList.filter(item => filterFn(filterValue, item[key]))
       }
-    })
+    }
 
-    console.log(list)
+    Object.entries(conditions).forEach(applyConditions(combinator))
+
     if (combineWithCurrent) {
       list = combine(filtered, list, operator || allCombinators.and)
     }
