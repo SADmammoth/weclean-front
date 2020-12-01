@@ -12,6 +12,9 @@ module.exports = {
         typeName: `VacuumCleaner`,
         refetchInterval: 60,
         batch: true,
+        headers: {
+          Authorization: process.env.GATSBY_API_SOURCE_TOKEN,
+        },
       },
     },
     `gatsby-plugin-numl`,
