@@ -2,14 +2,15 @@
 import nativeEvents from "jsx-native-events"
 import React from "react"
 import _ from "lodash"
+import literals from "../../literals"
 
 export default function createNumberField([name, value]) {
   const range = value.to - value.from
 
   return (
     <nu-flex flow="column" gap="1x">
-      <nu-label>
-        {_.capitalize(_.startCase(name))} ({value.unit})
+      <nu-label size="lg">
+        {literals.CONTENT.FIELDS[name]}, ({value.unit})
       </nu-label>
 
       <nu-props id="root" min={value.from} max={value.to}></nu-props>

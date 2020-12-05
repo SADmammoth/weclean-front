@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react"
+import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import _ from "lodash"
 import Header from "../../components/Header"
 import Theme from "./Theme"
 import Footer from "../../components/Footer"
 import Gallery from "../../components/Gallery"
+import literals from "../../literals"
 
 export default function VacuumCleanerCard({
   pageContext: {
@@ -12,23 +14,24 @@ export default function VacuumCleanerCard({
     manufacturer,
     model,
     price,
-    imagesList: { image600x600, others },
+    imagesList,
     oldPrice,
     units,
     ...otherProps
   },
 }) {
-  const [image, setImage] = useState("#")
+  let image600x600 = ""
+  let others = []
 
-  useEffect(() => {
-    setImage(process.env.GATSBY_API_URL + image600x600)
-  }, [image600x600])
+  if (imagesList) {
+    ;({ image600x600, others } = imagesList)
+  }
 
-  const title = `WeClean \u2013 ${manufacturer}
+  const title = `${literals.CONTENT.SITENAME} \u2013 ${manufacturer}
    ${model}`
 
   function getSpec(propName, propValue) {
-    let capitalizedName = _.capitalize(_.startCase(propName))
+    let capitalizedName = literals.CONTENT.FIELDS[propName]
     let unit = ""
     if (typeof propValue === "number") {
       unit = units[propName]
@@ -53,39 +56,44 @@ export default function VacuumCleanerCard({
   return (
     <Theme>
       <Helmet title={title} />
-      <Header title="WeClean" />
+      <Header />
 
       <nu-flex flow="column" items="center" padding="2x 0 10x 0">
         <nu-grid
           class="container"
           items="center"
-          rows="auto auto auto"
-          columns="40% 60%"
+          rows="auto auto auto|auto auto auto auto"
+          columns="40% 60%||auto"
+          width="||95vw"
         >
           <Gallery
             images={[image600x600, ...others]}
             mode="images"
-            place="center end"
+            place="center end||center"
           />
-          <nu-flex flow="column" place="center start">
-            <nu-strong size="h3" padding="0 2x" color="special">
+          <nu-flex
+            flow="column"
+            place="center start||center"
+            padding="||top 3x"
+          >
+            <nu-strong
+              size="h3||2.5x"
+              text="||center"
+              padding="0 2x"
+              color="special"
+            >
               {manufacturer}
             </nu-strong>
-            <nu-mark radius="0" padding="2x 3x 2x 2x">
-              <nu-h1
-                size="h1"
-                text="wrap"
-                color="text-strong"
-                class="word-break"
-              >
+            <nu-mark radius="0" padding="2x 3x 2x 2x" sizing="border-box">
+              <nu-h1 size="h1||3x" text="wrap||wrap center" color="text-strong">
                 {model}
               </nu-h1>
             </nu-mark>
             <nu-badge
-              place="start"
+              place="start||center"
               special
               z="2"
-              size="4x"
+              size="4x||3x"
               padding="1x 2x"
               text="italic"
               position="absolute"
@@ -105,26 +113,29 @@ export default function VacuumCleanerCard({
                   place="absolute"
                   move="0 -140%"
                 >
-                  {oldPrice.toFixed(2)}
-
-                  {units["price"]}
+                  {oldPrice?.toFixed(2)}
+                  {units?.price}
                 </nu-badge>
               )}
-              {price.toFixed(2)}
-
-              {units["price"]}
+              {price?.toFixed(2)}
+              {units?.price}
             </nu-badge>
           </nu-flex>
           <nu-flex
             flow="column"
             items="center"
-            column="span 2"
+            column="span 2||span 1"
             width="100%"
             padding="6x top"
           >
             <nu-line />
-            <nu-h2 padding="2x bottom">Specifications:</nu-h2>
-            <nu-grid border="0" columns="auto auto" flow="row wrap" gap="1x 5x">
+            <nu-h2 padding="2x bottom">{literals.CONTENT.SPECIFICATIONS}</nu-h2>
+            <nu-grid
+              border="0"
+              columns="auto auto||auto"
+              flow="row wrap||row"
+              gap="1x 5x"
+            >
               {Object.entries(otherProps).map(entry => getSpec(...entry))}
             </nu-grid>
           </nu-flex>
@@ -133,4 +144,19 @@ export default function VacuumCleanerCard({
       <Footer />
     </Theme>
   )
+}
+
+VacuumCleanerCard.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  manufacturer: PropTypes.string.isRequired,
+  model: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  imagesList: PropTypes.shape({
+    image600x600: PropTypes.string.isRequired,
+    others: PropTypes.string.isRequired,
+  }).isRequired,
+  construction: PropTypes.string.isRequired,
+  cleaningFeatures: PropTypes.arrayOf(PropTypes.string).isRequired,
+  oldPrice: PropTypes.number.isRequired,
+  units: PropTypes.shape({ price: PropTypes.string.isRequired }).isRequired,
 }

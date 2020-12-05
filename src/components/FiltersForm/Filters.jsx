@@ -4,8 +4,8 @@ import createRadioGroup from "./createRadioGroup"
 import createCheckboxGroup from "./createCheckboxGroup"
 import groupNumberFields from "./groupNumberFields"
 import createNumberField from "./createNumberField"
-import combinators from "../useFilter/combinators"
 import operations from "../useFilter/operations"
+import literals from "../../literals"
 
 export default function Filters({
   checkboxFields,
@@ -22,14 +22,13 @@ export default function Filters({
   const setFilterValue = (name, value, operator) => {
     setFilter(filter => {
       let filterList = filter[name]?.value
-      console.log(name, filter[name], filterList)
+
       if (filterList) {
         if (filterList.includes(value)) {
           filterList = [
             ...filterList.slice(0, filterList.indexOf(value)),
             ...filterList.slice(filterList.indexOf(value) + 1, -1),
           ]
-          console.log(filterList)
         } else {
           filterList = [...filterList, value]
         }
@@ -68,9 +67,9 @@ export default function Filters({
   const renderRadioButtons = useCallback(
     (fields = {}) =>
       Object.entries(fields).map(([key, values]) => (
-        <nu-pane>
+        <nu-pane key={key}>
           {createRadioGroup(
-            _.capitalize(_.startCase(key)),
+            literals.CONTENT.FIELDS[key],
             values,
             filter[key]?.value,
             value => setFilterValue(key, value)
@@ -83,9 +82,9 @@ export default function Filters({
   const renderCheckboxes = useCallback(
     (fields = {}) =>
       Object.entries(fields).map(([key, values]) => (
-        <nu-pane>
+        <nu-pane key={key}>
           {createCheckboxGroup(
-            _.capitalize(_.startCase(key)),
+            literals.CONTENT.FIELDS[key],
             values,
             filter[key]?.value,
             value => setFilterValue(key, value, operations.inArray)
@@ -98,7 +97,7 @@ export default function Filters({
   const renderNumberFields = useMemo(
     () =>
       Object.entries(group(numberFields)).map((...args) => (
-        <nu-pane flow="column" items="stretch">
+        <nu-pane key={args.toString()} flow="column" items="stretch">
           {createNumberField(...args)}
         </nu-pane>
       )),
@@ -108,7 +107,7 @@ export default function Filters({
   const renderNumberFieldsAdditional = useMemo(
     () =>
       Object.entries(group(numberFieldsAdditional)).map((...args) => (
-        <nu-pane flow="column" items="stretch">
+        <nu-pane key={args.toString()} flow="column" items="stretch">
           {createNumberField(...args)}
         </nu-pane>
       )),
@@ -116,7 +115,7 @@ export default function Filters({
   )
 
   return (
-    <nu-form width="20vw">
+    <nu-form>
       <nu-flex flow="column" gap="1x">
         <nu-attrs for="pane" border padding="2x"></nu-attrs>
         {renderRadioButtons(radioFields)}

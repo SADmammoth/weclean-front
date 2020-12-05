@@ -7,7 +7,7 @@ export default function createRadioGroup(
   changeValue
 ) {
   let value = currentValue ? currentValue[0] : null
-  console.log(value)
+
   if (!value) {
     value = null
   }
@@ -17,9 +17,10 @@ export default function createRadioGroup(
       {values.map(value => (
         <nu-flex items="center" gap="1x">
           <nu-radio
-            size="xs"
+            key={label + value}
             id={label + value}
             labelledby=":next"
+            size="xs"
             value={value}
             checked={currentValue?.includes(value) ? "checked" : null}
             onClick={event => {

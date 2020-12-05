@@ -13,7 +13,7 @@ export default function groupNumberFields(
   let match
   let decapitalized
 
-  Object.entries(numberFields).map(([name, value]) => {
+  Object.entries(numberFields).forEach(([name, value]) => {
     if (min.test(name)) {
       match = min.exec(name)
     } else {

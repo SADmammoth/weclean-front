@@ -54,7 +54,7 @@ export default function Gallery({ images, mode, ...props }) {
 
   return (
     <nu-section id="gallery" {...props}>
-      <nu-pane flow="column" items="center" width="22.5vw min">
+      <nu-pane flow="column" items="center" width="22.5vw 30x 70vw">
         {createImage(images[index], index, null, true)}
         {images.length === 1 || (
           <nu-pane place="center">

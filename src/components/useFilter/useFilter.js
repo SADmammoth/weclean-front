@@ -18,7 +18,10 @@ export default function useFilter(items) {
     const { combinators, conditions } = filter
     let isCombinatorArray = combinators instanceof Array
 
-    if (isCombinatorArray && combinators !== conditions - 1) {
+    if (
+      isCombinatorArray &&
+      combinators.length < Object.keys(conditions).length - 1
+    ) {
       return
     }
 
@@ -34,15 +37,13 @@ export default function useFilter(items) {
         combinator = combinators[index - 1]
       }
 
-      if (index) {
-        console.log(key, initList)
+      if (index !== 0) {
         list = combine(
           list,
           initList.filter(item => filterFn(filterValue, item[key])),
           combinator
         )
       } else {
-        console.log(key, initList)
         list = initList.filter(item => filterFn(filterValue, item[key]))
       }
     }

@@ -1,22 +1,21 @@
-import { graphql } from "gatsby"
+import _ from "lodash"
+import literals from "../literals"
 
-import groupNumberFields from "../components/FiltersForm/groupNumberFields"
+import combinators from "../components/useFilter/combinators"
 
 import operations from "../components/useFilter/operations"
 
 import Footer from "../components/Footer"
 
 import Theme from "./templates/Theme"
-import React, { useState } from "react"
+import React, { useState, useCallback, useEffect } from "react"
 import { Helmet } from "react-helmet"
 import Header from "../components/Header"
-import VacuumCleanerCard from "../components/VacuumCleanerCard"
 import FilterList from "../components/FilterList"
-import combinators from "../components/useFilter/combinators"
-import { useEffect } from "react"
 import Sidebar from "../components/Sidebar"
 import FiltersForm from "../components/FiltersForm"
-import { filter } from "lodash"
+import allDataQuery from "../queries/allDataQuery"
+import { graphql } from "gatsby"
 
 export default function Home({ data: { graphqlData } }) {
   const { allVacuumCleaners, units, ...filters } = graphqlData
@@ -24,17 +23,26 @@ export default function Home({ data: { graphqlData } }) {
   const [searchString, setSearchString] = useState()
   const [filter, setFilter] = useState({})
 
-  useEffect(() => {
-    setFilter(filter => ({
-      ...filter,
-      conditions: {
-        ...filter.conditions,
-        model: {
-          value: searchString,
-          operator: operations.containsCaseInsensitive,
+  const setFilterOrSearchString = useCallback(
+    (newFilter = {}) => {
+      setFilter(filter => ({
+        combinators: combinators.and,
+        ...filter,
+        conditions: {
+          ...filter.conditions,
+          ...newFilter,
+          model: {
+            value: searchString,
+            operator: operations.containsCaseInsensitive,
+          },
         },
-      },
-    }))
+      }))
+    },
+    [searchString]
+  )
+
+  useEffect(() => {
+    setFilterOrSearchString()
   }, [searchString])
 
   const {
@@ -48,19 +56,26 @@ export default function Home({ data: { graphqlData } }) {
   } = filters
   return (
     <Theme>
-      <Helmet title={title} />
-      <Header title="WeClean" onSearchInput={setSearchString} />
+      <Helmet
+        title={title}
+        meta={[
+          { charSet: "utf-8" },
+          { name: "description", content: literals.SEO.DESCRIPTION },
+          { name: "keywords", content: literals.SEO.KEYWORDS },
+        ]}
+      />
+      <Header onSearchInput={setSearchString} />
       <nu-flex flow="column" items="center">
-        <nu-flex content="space-between" class="container">
+        <nu-grid content="center" class="container" columns="2fr 1fr|auto|">
           <nu-flex items="center" flow="column" gap="1x" padding="1x 0 4x 0">
-            <nu-h1>Catalog</nu-h1>
+            <nu-h1>{literals.CONTENT.CATALOG_TITLE}</nu-h1>
             <FilterList
               items={allVacuumCleaners}
               units={units}
               filter={filter}
             />
           </nu-flex>
-          <Sidebar>
+          <Sidebar onSearchInput={setSearchString}>
             <FiltersForm
               radioFields={{
                 construction: constructions,
@@ -75,15 +90,10 @@ export default function Home({ data: { graphqlData } }) {
               numberFields={{ minPrice, maxPrice }}
               numberFieldsAdditional={numberFieldsAdditional}
               units={units}
-              applyFilter={newFilter =>
-                setFilter(filter => ({
-                  ...filter,
-                  conditions: { ...filter.conditions, ...newFilter },
-                }))
-              }
+              applyFilter={setFilterOrSearchString}
             />
           </Sidebar>
-        </nu-flex>
+        </nu-grid>
       </nu-flex>
       <Footer />
     </Theme>
@@ -93,46 +103,7 @@ export default function Home({ data: { graphqlData } }) {
 export const query = graphql`
   query {
     graphqlData {
-      allVacuumCleaners {
-        id
-        manufacturer
-        model
-        price
-        imagesList {
-          thumb
-        }
-        construction: constructionName
-        cleaningFeatures: cleaningFeaturesNames
-        weight
-        dustCollectorType: dustCollectorTypeName
-        volumeOfDustCollector
-        powerConsumption
-        powerSource: powerSourceName
-        powerCordLength
-        color
-        oldPrice
-      }
-      units
-
-      constructions
-      allManufacturers {
-        name
-      }
-      powerSources
-      cleaningFeatures
-
-      minPrice
-      maxPrice
-      minNoiseLevel
-      maxNoiseLevel
-      minPowerConsumption
-      maxPowerConsumption
-      minPowerCordLength
-      maxPowerCordLength
-      minVolumeOfDustCollector
-      maxVolumeOfDustCollector
-      minWeight
-      maxWeight
+      ...allData
     }
   }
 `

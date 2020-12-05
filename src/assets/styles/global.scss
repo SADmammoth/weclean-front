@@ -20,18 +20,6 @@
   font-weight: 600;
 }
 
-.nowrap {
-  display: -webkit-box !important;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
-.word-break {
-  word-wrap: break-word;
-  overflow: hidden;
-}
 
 a {
   text-decoration: none;

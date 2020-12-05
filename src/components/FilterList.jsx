@@ -13,7 +13,7 @@ export default function FilterList({ items, units, filter }) {
   }, [JSON.stringify(filter)])
 
   return (
-    <nu-list width="60vw">
+    <nu-list height="min 60vh">
       {filtered.length === 0 ? (
         <nu-card color="subtle-text" size="lg" text="center">
           No vacuum cleaners found

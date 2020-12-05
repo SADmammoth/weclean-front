@@ -9,7 +9,7 @@ export default {
   less: "LT",
   lessOrEqual: "LT_EQ",
   greater: "GT",
-  lessOrEqual: "GT_EQ",
+  greaterOrEqual: "GT_EQ",
   range: "FROM_TO",
   notInRange: "BEFORE_AFTER",
   inArray: "IN",

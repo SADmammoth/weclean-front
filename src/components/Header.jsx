@@ -1,41 +1,33 @@
-/** @jsx nativeEvents */
-import nativeEvents from "jsx-native-events"
-
 import React, { useState, useEffect } from "react"
-import { ReactComponent as Logo } from "../assets/images/logo_vector.svg"
+import PropTypes from "prop-types"
 import { Link } from "gatsby"
 import Theme from "../pages/templates/Theme"
+import Search from "./Search"
+import Logo from "./Logo"
 
-export default function Header({ title, onSearchInput }) {
+export default function Header({ onSearchInput }) {
   return (
     <nu-header padding="2x 6x 2x 2x">
       <nu-flex content="center">
         <nu-pane class="container" content="center space-between">
-          <Link to="/">
-            <nu-pane>
-              <Logo width="3rem" />
-              <nu-flow padding="0 5x 0 0">
-                <nu-strong
-                  size="h1 2"
-                  color="text-strong"
-                  style={{ fontFamily: "Pump-Light" }}
-                >
-                  {title}
-                </nu-strong>
-                <nu-block size="0.82">You choose, we clean</nu-block>
-              </nu-flow>
-            </nu-pane>
-          </Link>
-          <nu-inputgroup toned width="30%" fill="subtle">
-            <nu-icon name="search" />
-            <nu-input
-              width="100%"
-              placeholder="Search"
-              onEventInput={event => onSearchInput(event.target.value)}
-            />
-          </nu-inputgroup>
+          <Logo />
+          <Search hide="n|y|y" onSearchInput={onSearchInput} />
+          <nu-btn
+            hide="y|n|n"
+            border="0"
+            fill="none"
+            padding="0"
+            control="sidebar[hide= n|y]"
+            toggle
+          >
+            <nu-icon name="menu" />
+          </nu-btn>
         </nu-pane>
       </nu-flex>
     </nu-header>
   )
+}
+
+Header.propTypes = {
+  onSearchInput: PropTypes.func.isRequired,
 }
