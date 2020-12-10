@@ -25,7 +25,16 @@ export default function VacuumCleanerCard({
       <nu-pane gap="0" items="flex-start">
         <nu-region padding="2x 1x 2x 2x||1x 0x 1x 1x" fill="mark">
           <EntityPageLink id={id}>
-            <nu-img src={image} height="18x||10x" width="18x||10x" border />
+            <nu-img
+              src={image}
+              height="18x||10x"
+              width="18x||10x"
+              border
+              style={{
+                backgroundImage: `url(${window.location.origin}/placeholder.jpg)`,
+                backgroundSize: "contain",
+              }}
+            />
           </EntityPageLink>
         </nu-region>
         <nu-region width="90%" move="0.5x 1x">

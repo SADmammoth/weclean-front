@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react"
 import jsxNativeEvents from "jsx-native-events"
 import _ from "lodash"
 
-export default function Gallery({ images, mode, ...props }) {
+export default function Gallery({ images, mode, alt, ...props }) {
   const [index, setIndex] = useState(0)
   function createImage(src, i, array, main = false) {
     const image = (
@@ -10,8 +10,16 @@ export default function Gallery({ images, mode, ...props }) {
         key={"image" + i}
         src={process.env.GATSBY_API_URL + src}
         width="100%"
-        height="100%"
+        height={!array ? "min 20vw" : ""}
         border={main || "0"}
+        alt={alt + " " + i}
+        style={
+          !array
+            ? {
+                backgroundImage: `url(${window.location.origin}/placeholder.jpg)`,
+              }
+            : {}
+        }
       />
     )
     return array ? (
