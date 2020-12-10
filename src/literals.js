@@ -1,3 +1,5 @@
+import linkTagger from "./linkTagger"
+
 export default {
   SEO: {
     DESCRIPTION:
@@ -10,6 +12,11 @@ export default {
     CATALOG_TITLE: "Catalog",
     MOTO: "You choose, we clean",
     SIDEBAR_TITLE: "Filters",
+    TITLE_404: "Page not found",
+    TEXT_404:
+      "You should better look for something you searching somewhere else.",
+    TO_MAIN_PAGE_404: linkTagger`Want to start from the ${"/"}${"Main Page"}?`,
+    TO_MAIN_PAGE_404_PLAIN: `Want to start from the Main Page?`,
     FIELDS: {
       construction: "Construction type",
       cleaningFeatures: "Cleaning features",
