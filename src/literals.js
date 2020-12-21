@@ -36,5 +36,7 @@ export default {
     SPECIFICATIONS: "Specifications",
     SEARCH: "Search model",
     COPY: "© 2020, Maxim Logvinenko",
+    MORE: "More",
+    LESS: "Less",
   },
 }

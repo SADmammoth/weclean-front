@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 import EntityPageLink from "./EntityPageLink"
-import literals from "../literals"
+import literalsRU from "../literalsRU"
 
 export default function VacuumCleanerCard({
   id,
@@ -102,13 +102,13 @@ export default function VacuumCleanerCard({
               </nu-badge>
               <nu-block hide="n|n|y" line-clamp="1">
                 <nu-strong>
-                  {`${literals.CONTENT.FIELDS.construction}: `}
+                  {`${literalsRU.CONTENT.FIELDS.construction}: `}
                 </nu-strong>
                 {construction}
               </nu-block>
               <nu-block hide="n|n|y" line-clamp="1">
                 <nu-strong>
-                  {`${literals.CONTENT.FIELDS.cleaningFeatures}: `}
+                  {`${literalsRU.CONTENT.FIELDS.cleaningFeatures}: `}
                 </nu-strong>
                 {cleaningFeatures.join(", ")}
               </nu-block>

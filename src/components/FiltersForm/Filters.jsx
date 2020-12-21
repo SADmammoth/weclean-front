@@ -5,7 +5,7 @@ import createCheckboxGroup from "./createCheckboxGroup"
 import groupNumberFields from "./groupNumberFields"
 import createNumberField from "./createNumberField"
 import operations from "../useFilter/operations"
-import literals from "../../literals"
+import literalsRU from "../../literalsRU"
 
 export default function Filters({
   checkboxFields,
@@ -69,7 +69,7 @@ export default function Filters({
       Object.entries(fields).map(([key, values]) => (
         <nu-pane key={key}>
           {createRadioGroup(
-            literals.CONTENT.FIELDS[key],
+            literalsRU.CONTENT.FIELDS[key],
             values,
             filter[key]?.value,
             value => setFilterValue(key, value)
@@ -84,7 +84,7 @@ export default function Filters({
       Object.entries(fields).map(([key, values]) => (
         <nu-pane key={key}>
           {createCheckboxGroup(
-            literals.CONTENT.FIELDS[key],
+            literalsRU.CONTENT.FIELDS[key],
             values,
             filter[key]?.value,
             value => setFilterValue(key, value, operations.inArray)
@@ -136,7 +136,7 @@ export default function Filters({
           <nu-btn
             width="100%"
             control="additional toggleIcon[name=chevron-up|chevron-down]"
-            t="'More' :pressed['Less']"
+            t={`'${literalsRU.CONTENT.MORE}' :pressed['${literalsRU.CONTENT.LESS}']`}
             toggle
           ></nu-btn>
         </nu-section>

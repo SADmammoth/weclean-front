@@ -1,6 +1,6 @@
 import { Link } from "gatsby"
 import React from "react"
-import literals from "../literals"
+import literalsRU from "../literalsRU"
 import { ReactComponent as LogoSvg } from "../assets/images/logo_vector.svg"
 
 export default function Logo({ hide }) {
@@ -14,9 +14,9 @@ export default function Logo({ hide }) {
             color="text-strong"
             style={{ fontFamily: "Pump-Light" }}
           >
-            {literals.CONTENT.SITENAME}
+            {literalsRU.CONTENT.SITENAME}
           </nu-strong>
-          <nu-block size="0.82">{literals.CONTENT.MOTO}</nu-block>
+          <nu-block size="0.9">{literalsRU.CONTENT.MOTO}</nu-block>
         </nu-flow>
       </nu-pane>
     </Link>

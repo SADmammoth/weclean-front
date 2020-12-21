@@ -1,5 +1,5 @@
 import React from "react"
-import literals from "../literals"
+import literalsRU from "../literalsRU"
 import Filters from "./FiltersForm"
 import Search from "./Search"
 
@@ -15,7 +15,7 @@ export default function Sidebar({ children, onSearchInput }) {
       width="|100vw|"
     >
       <Search hide="y|n|n" onSearchInput={onSearchInput} />
-      <nu-h2 hide="y|n|n">{literals.CONTENT.SIDEBAR_TITLE}</nu-h2>
+      <nu-h2 hide="y|n|n">{literalsRU.CONTENT.SIDEBAR_TITLE}</nu-h2>
       {children}
     </nu-aside>
   )

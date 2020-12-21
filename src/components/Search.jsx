@@ -2,7 +2,7 @@
 import nativeEvents from "jsx-native-events"
 import React from "react"
 import PropTypes from "prop-types"
-import literals from "../literals"
+import literalsRU from "../literalsRU"
 
 function Search({ hide, onSearchInput }) {
   return (
@@ -16,7 +16,7 @@ function Search({ hide, onSearchInput }) {
       <nu-icon name="search" />
       <nu-input
         width="100%"
-        placeholder={literals.CONTENT.SEARCH}
+        placeholder={literalsRU.CONTENT.SEARCH}
         onEventInput={event => onSearchInput(event.target.value)}
       />
     </nu-inputgroup>

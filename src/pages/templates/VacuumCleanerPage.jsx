@@ -6,7 +6,7 @@ import Header from "../../components/Header"
 import Theme from "./Theme"
 import Footer from "../../components/Footer"
 import Gallery from "../../components/Gallery"
-import literals from "../../literals"
+import literalsRU from "../../literalsRU"
 
 export default function VacuumCleanerCard({
   pageContext: {
@@ -27,11 +27,11 @@ export default function VacuumCleanerCard({
     ;({ image600x600, others } = imagesList)
   }
 
-  const title = `${literals.CONTENT.SITENAME} \u2013 ${manufacturer}
+  const title = `${literalsRU.CONTENT.SITENAME} \u2013 ${manufacturer}
    ${model}`
 
   function getSpec(propName, propValue) {
-    let capitalizedName = literals.CONTENT.FIELDS[propName]
+    let capitalizedName = literalsRU.CONTENT.FIELDS[propName]
     let unit = ""
     if (typeof propValue === "number") {
       unit = units[propName]
@@ -129,7 +129,9 @@ export default function VacuumCleanerCard({
             padding="6x top"
           >
             <nu-line />
-            <nu-h2 padding="2x bottom">{literals.CONTENT.SPECIFICATIONS}</nu-h2>
+            <nu-h2 padding="2x bottom">
+              {literalsRU.CONTENT.SPECIFICATIONS}
+            </nu-h2>
             <nu-grid
               border="0"
               columns="auto auto||auto"

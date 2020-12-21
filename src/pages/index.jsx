@@ -1,5 +1,5 @@
 import _ from "lodash"
-import literals from "../literals"
+import literalsRU from "../literalsRU"
 
 import combinators from "../components/useFilter/combinators"
 
@@ -60,15 +60,15 @@ export default function Home({ data: { graphqlData } }) {
         title={title}
         meta={[
           { charSet: "utf-8" },
-          { name: "description", content: literals.SEO.DESCRIPTION },
-          { name: "keywords", content: literals.SEO.KEYWORDS },
+          { name: "description", content: literalsRU.SEO.DESCRIPTION },
+          { name: "keywords", content: literalsRU.SEO.KEYWORDS },
         ]}
       />
       <Header onSearchInput={setSearchString} />
       <nu-flex flow="column" items="center">
         <nu-grid content="center" class="container" columns="2fr 1fr|auto|">
           <nu-flex items="center" flow="column" gap="1x" padding="1x 0 4x 0">
-            <nu-h1>{literals.CONTENT.CATALOG_TITLE}</nu-h1>
+            <nu-h1>{literalsRU.CONTENT.CATALOG_TITLE}</nu-h1>
             <FilterList
               items={allVacuumCleaners}
               units={units}
